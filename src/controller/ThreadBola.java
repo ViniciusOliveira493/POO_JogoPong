@@ -7,8 +7,8 @@ public class ThreadBola extends Thread{
 	
 	public ThreadBola(Valores valores) {
 		this.valores = valores;		
-		int px = (valores.tela.getWidth()/2)-valores.bola.getRadius();
-		int py = (valores.tela.getHeight()/2)-valores.bola.getRadius();
+		int px = (valores.tela.getWidth()/2)-valores.bola.getRadius()+4;
+		int py = (valores.tela.getHeight()/2)-valores.bola.getRadius()-15;
 		valores.bola.setPosX(px);
 		valores.bola.setPosY(py);
 	}
@@ -16,7 +16,7 @@ public class ThreadBola extends Thread{
 	private void iniciar() {
 		while (true) {
 			valores.bola.mover();
-			valores.bola.colidir(valores.tela.getWidth(),valores.tela.getHeight(),valores.comp,valores.player,valores.tela);
+			valores.bola.colidir(valores.comp,valores.player,valores.tela);
 			valores.tela.atualizar();
 			try {
 				sleep(5);

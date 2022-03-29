@@ -17,9 +17,9 @@ public class Bola {
 		posY += spdY;
 	}
 	
-	public void colidir(int screenWidth,int screenHeight, Barra comp,Barra player,Tela tela) {		
-		if(posY>(screenHeight-radius-50) || posY<0) {
-			if(!(spdY<0 && posY>(screenHeight-radius-50))) {
+	public void colidir(Barra comp,Barra player,Tela tela) {		
+		if(posY>(tela.getHeight()-radius-50) || posY<0) {
+			if(!(spdY<0 && posY>(tela.getHeight()-radius-50))) {
 				spdY*=-1;
 			}			
 		}
@@ -40,17 +40,17 @@ public class Bola {
 			spdX*=-1;
 		}
 		
-		if(posX>(screenWidth-radius-0)) {
+		if(posX>(tela.getWidth()-radius-0)) {
 			tela.pontuaPlayer();
-			this.setPosX((screenWidth/2)-radius);
-			this.setPosY((int)(Math.random()*screenHeight));
+			this.setPosX((tela.getWidth()/2)-radius);
+			this.setPosY((int)(Math.random()*tela.getHeight()));
 			spdX = 2;
 		}
 		
 		if(posX<0) {
 			tela.pontuaComputador();
-			this.setPosX((screenWidth/2)-radius);
-			this.setPosY((int)(Math.random()*(screenHeight-200)+50));
+			this.setPosX((tela.getWidth()/2)-radius);
+			this.setPosY((int)(Math.random()*(tela.getHeight()-200)+50));
 			spdX = -2;
 		}
 	}

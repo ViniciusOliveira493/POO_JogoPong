@@ -20,15 +20,14 @@ public class Tela extends JFrame{
 	JLabel lblBarraComp;
 	JLabel lblPontosPlayer;
 	JLabel lblPontosComp;
+	JLabel lblPause;
 	Panel panel;
 	boolean pause = false;
 	
 	Valores valores;	
 	int x,y;
 	
-	public Tela(Valores valores) {
-		this.valores = valores;
-		valores.bola = new Bola();
+	public Tela(Valores valores) {		
 		this.setSize(900,500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -36,6 +35,13 @@ public class Tela extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setBackground(Color.lightGray);
 		this.setResizable(false);
+		
+		this.valores = valores;
+		valores.bola = new Bola();
+		
+		lblPause = new JLabel();
+		lblPause.setText("Pause \n(Pressione P para voltar ao jogo)");
+		lblPause.setBounds(getWidth()/2,getHeight()/3,300,300);
 		
 		lblPontosPlayer = new JLabel();
 		panel = new Panel(this.getWidth(),this.getHeight(),this.valores.bola);
@@ -48,19 +54,20 @@ public class Tela extends JFrame{
 		iniciarPlayer();
 		ativarKeyListener();
 		setVisible(true);	
+		pause();
 	}
 	
-	public void criarBarraPlayer(Barra barra) {
+	public void criarBarraPlayer(Barra barraPlayer) {
 		lblBarraPlayer = new JLabel();
-		lblBarraPlayer.setBounds(barra.getPosX(),barra.getPosY(),barra.getWidth(), barra.getHeight());
+		lblBarraPlayer.setBounds(barraPlayer.getPosX(),barraPlayer.getPosY(),barraPlayer.getWidth(), barraPlayer.getHeight());
 		lblBarraPlayer.setOpaque(true);
 		lblBarraPlayer.setVisible(true);
 		this.add(lblBarraPlayer);
 	}
 	
-	public void criarBarraComp(Barra barra) {
+	public void criarBarraComp(Barra barraComp) {
 		lblBarraComp = new JLabel();
-		lblBarraComp.setBounds(barra.getPosX(),barra.getPosY(),barra.getWidth(), barra.getHeight());
+		lblBarraComp.setBounds(barraComp.getPosX(),barraComp.getPosY(),barraComp.getWidth(), barraComp.getHeight());
 		lblBarraComp.setOpaque(true);
 		lblBarraComp.setVisible(true);	
 		this.add(lblBarraComp);
@@ -86,6 +93,7 @@ public class Tela extends JFrame{
 		this.valores.pontosComputador++;
 		resetPlayer();
 	}
+	
 	
 	private void iniciarPlayer() {
 		this.valores.player.setPosX(50);
@@ -145,10 +153,13 @@ public class Tela extends JFrame{
 			valores.bola.setSpdY(0);
 			valores.bola.setSpdX(0);
 			pause = true;
+			lblPause.setVisible(true);
+			this.add(lblPause);
 		}else {
 			valores.bola.setSpdY(y);
 			valores.bola.setSpdX(x);
 			pause = false;
+			lblPause.setVisible(false);
 		}
 	}
 	

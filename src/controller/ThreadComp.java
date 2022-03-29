@@ -1,10 +1,7 @@
 package controller;
 
 import java.awt.Color;
-
-import model.Barra;
 import model.Valores;
-import view.Tela;
 
 public class ThreadComp extends Thread{
 	Valores valores;
@@ -34,7 +31,7 @@ public class ThreadComp extends Thread{
 			}
 			this.valores.tela.atualizar();
 			try {
-				this.sleep(tempoReacao);
+				sleep(tempoReacao);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
