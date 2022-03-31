@@ -3,15 +3,17 @@ package view;
 import controller.ThreadBola;
 import controller.ThreadComp;
 import model.Barra;
+import model.Bola;
 import model.Valores;
 
 public class Principal {
 	static Valores valores = new Valores();
 	public static void main(String[] args) {
 		
-		valores.player = new Barra(50);	
-		valores.comp = new Barra(5);
-		valores.tela = new Tela(valores);
+		valores.setPlayer(new Barra(50));	
+		valores.setComp(new Barra(5));
+		valores.setBola(new Bola());
+		valores.setTela(new Tela(valores));
 		
 		
 		ThreadBola tbola = new ThreadBola(valores);

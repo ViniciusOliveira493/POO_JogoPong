@@ -19,7 +19,6 @@ public class Panel extends JPanel{
 		setSize(screenWidth,screenHeight);
 		setLocation(0,0);
 		setVisible(true);
-		setBackground(Color.black);
 		setOpaque(true);
 	}
 	

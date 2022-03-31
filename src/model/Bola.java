@@ -17,12 +17,8 @@ public class Bola {
 		posY += spdY;
 	}
 	
-	public void colidir(Barra comp,Barra player,Tela tela) {		
-		if(posY>(tela.getHeight()-radius-50) || posY<0) {
-			if(!(spdY<0 && posY>(tela.getHeight()-radius-50))) {
-				spdY*=-1;
-			}			
-		}
+	public void colidir(Barra comp,Barra player,Tela tela) {
+		//Colisão com os jogadores (Computador e Player)
 		if (posX < comp.getPosX() + comp.getWidth() &&
 			 posX + radius > comp.getPosX() &&
 			 posY < comp.getPosY() + comp.getHeight() &&
@@ -40,6 +36,14 @@ public class Bola {
 			spdX*=-1;
 		}
 		
+		//Colisão com os Limites superior e inferior da Tela
+		if(posY>(tela.getHeight()-radius-50) || posY<0) {
+			if(!(spdY<0 && posY>(tela.getHeight()-radius-50))) {
+				spdY*=-1;
+			}			
+		}
+		
+		//Colisão com os limites laterais da tela
 		if(posX>(tela.getWidth()-radius-0)) {
 			tela.pontuaPlayer();
 			this.setPosX((tela.getWidth()/2)-radius);

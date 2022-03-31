@@ -37,18 +37,17 @@ public class Tela extends JFrame{
 		this.setResizable(false);
 		
 		this.valores = valores;
-		valores.bola = new Bola();
 		
 		lblPause = new JLabel();
 		lblPause.setText("Pause \n(Pressione P para voltar ao jogo)");
 		lblPause.setBounds(getWidth()/2,getHeight()/3,300,300);
 		
 		lblPontosPlayer = new JLabel();
-		panel = new Panel(this.getWidth(),this.getHeight(),this.valores.bola);
+		panel = new Panel(this.getWidth(),this.getHeight(),this.valores.getBola());
 		this.add(panel);
 		
-		criarBarraPlayer(valores.player);
-		criarBarraComp(valores.comp);			
+		criarBarraPlayer(valores.getPlayer());
+		criarBarraComp(valores.getComp());			
 		
 		criarLblPontos();
 		iniciarPlayer();
@@ -74,31 +73,31 @@ public class Tela extends JFrame{
 	}
 	
 	public void atualizar() {		
-		lblBarraPlayer.setBackground(valores.player.getColor());
-		lblBarraComp.setBackground(valores.comp.getColor());
-		lblPontosPlayer.setText(this.valores.pontosPlayer+"");
-		lblPontosComp.setText(this.valores.pontosComputador+"");
-		lblBarraPlayer.setBounds(valores.player.getPosX(),valores.player.getPosY(),valores.player.getWidth(), valores.player.getHeight());
-		lblBarraComp.setBounds(valores.comp.getPosX(),valores.comp.getPosY(),valores.comp.getWidth(), valores.comp.getHeight());	
-		this.panel.atualizar(this.valores.bola);
+		lblBarraPlayer.setBackground(valores.getPlayer().getColor());
+		lblBarraComp.setBackground(valores.getComp().getColor());
+		lblPontosPlayer.setText(this.valores.getPontosPlayer()+"");
+		lblPontosComp.setText(this.valores.getPontosComputador()+"");
+		lblBarraPlayer.setBounds(valores.getPlayer().getPosX(),valores.getPlayer().getPosY(),valores.getPlayer().getWidth(), valores.getPlayer().getHeight());
+		lblBarraComp.setBounds(valores.getComp().getPosX(),valores.getComp().getPosY(),valores.getComp().getWidth(), valores.getComp().getHeight());	
+		this.panel.atualizar(this.valores.getBola());
 		this.repaint();
 	}
 	
 	public void pontuaPlayer() {
-		this.valores.pontosPlayer++;
+		this.valores.pontuarPlayer();
 		resetPlayer();
 	}
 	
 	public void pontuaComputador() {
-		this.valores.pontosComputador++;
+		this.valores.pontuarComputador();
 		resetPlayer();
 	}
 	
 	
 	private void iniciarPlayer() {
-		this.valores.player.setPosX(50);
-		this.valores.player.setPosY(this.getHeight()/2-this.valores.player.getHeight());
-		this.valores.player.setColor(Color.blue);
+		this.valores.getPlayer().setPosX(50);
+		this.valores.getPlayer().setPosY(this.getHeight()/2-this.valores.getPlayer().getHeight());
+		this.valores.getPlayer().setColor(Color.blue);
 	}
 	
 	private void criarLblPontos() {
@@ -106,13 +105,13 @@ public class Tela extends JFrame{
 		lblPontosPlayer = new JLabel();
 		lblPontosPlayer.setFont(new Font("Arial",Font.BOLD,40));
 		lblPontosPlayer.setBounds(umQuarto, 0, 100, 100);
-		lblPontosPlayer.setText(this.valores.pontosPlayer+"");
+		lblPontosPlayer.setText(this.valores.getPontosPlayer()+"");
 		this.add(lblPontosPlayer);
 		
 		lblPontosComp = new JLabel();
 		lblPontosComp.setFont(new Font("Arial",Font.BOLD,40));
 		lblPontosComp.setBounds(umQuarto*3, 0, 100, 100);
-		lblPontosComp.setText(this.valores.pontosComputador+"");
+		lblPontosComp.setText(this.valores.getPontosComputador()+"");
 		this.add(lblPontosComp);
 	}
 	
@@ -135,11 +134,11 @@ public class Tela extends JFrame{
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				if(code == 38 || code == 87) {
-					valores.player.down();								
+					valores.getPlayer().down();								
 				}else if(code == 80) {
 					pause();
 				}else{
-					valores.player.up();		
+					valores.getPlayer().up();		
 				}
 				
 			}
@@ -148,22 +147,22 @@ public class Tela extends JFrame{
 	
 	private void pause() {
 		if(!pause) {
-			x = valores.bola.getSpdX();
-			y = valores.bola.getSpdY();					
-			valores.bola.setSpdY(0);
-			valores.bola.setSpdX(0);
+			x = valores.getBola().getSpdX();
+			y = valores.getBola().getSpdY();					
+			valores.getBola().setSpdY(0);
+			valores.getBola().setSpdX(0);
 			pause = true;
 			lblPause.setVisible(true);
 			this.add(lblPause);
 		}else {
-			valores.bola.setSpdY(y);
-			valores.bola.setSpdX(x);
+			valores.getBola().setSpdY(y);
+			valores.getBola().setSpdX(x);
 			pause = false;
 			lblPause.setVisible(false);
 		}
 	}
 	
 	private void resetPlayer() {
-		valores.player.setPosY(this.getHeight()/2-this.valores.player.getHeight());
+		valores.getPlayer().setPosY(this.getHeight()/2-this.valores.getPlayer().getHeight());
 	}
 }

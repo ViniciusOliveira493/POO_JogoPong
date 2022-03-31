@@ -7,17 +7,17 @@ public class ThreadBola extends Thread{
 	
 	public ThreadBola(Valores valores) {
 		this.valores = valores;		
-		int px = (valores.tela.getWidth()/2)-valores.bola.getRadius()+4;
-		int py = (valores.tela.getHeight()/2)-valores.bola.getRadius()-15;
-		valores.bola.setPosX(px);
-		valores.bola.setPosY(py);
+		int px = (valores.getTela().getWidth()/2)-valores.getBola().getRadius()+4;
+		int py = (valores.getTela().getHeight()/2)-valores.getBola().getRadius()-15;
+		valores.getBola().setPosX(px);
+		valores.getBola().setPosY(py);
 	}
 	
 	private void iniciar() {
 		while (true) {
-			valores.bola.mover();
-			valores.bola.colidir(valores.comp,valores.player,valores.tela);
-			valores.tela.atualizar();
+			valores.getBola().mover();
+			valores.getBola().colidir(valores.getComp(),valores.getPlayer(),valores.getTela());
+			valores.getTela().atualizar();
 			try {
 				sleep(5);
 			} catch (InterruptedException e) {
