@@ -15,11 +15,11 @@ public class Barra {
 	}
 	
 	public void up() {
-		posY += spd;
+		posY -= spd;
 	}
 	
 	public void down() {
-		posY -= spd;
+		posY += spd;
 	}
 	
 	public int getPosX() {

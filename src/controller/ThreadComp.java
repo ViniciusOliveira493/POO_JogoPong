@@ -13,7 +13,7 @@ public class ThreadComp extends Thread{
 		this.valores = valores;		
 		this.valores.getComp().setPosX(this.valores.getTela().getWidth()-100);
 		this.valores.getComp().setPosY(20);
-		this.valores.getComp().setColor(Color.RED);		
+		this.valores.getComp().setColor(Color.green);		
 	}
 	
 	private void iniciar() {
@@ -22,9 +22,9 @@ public class ThreadComp extends Thread{
 				int espaco = valores.getComp().getPosX()-valores.getBola().getPosX();
 				if(!(espaco<10)) {
 					if(valores.getBola().getPosY()>valores.getComp().getPosY()) {
-						this.valores.getComp().up();
-					}else {
 						this.valores.getComp().down();
+					}else {
+						this.valores.getComp().up();
 					}
 				}
 				

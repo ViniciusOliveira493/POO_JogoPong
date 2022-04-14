@@ -24,7 +24,7 @@ public class Bola {
 			 posY < comp.getPosY() + comp.getHeight() &&
 			 posY + radius > comp.getPosY()) {
 			
-			spdX = (int) ((Math.random()*maxSpd)+1);
+			spdX = (int) ((Math.random()*maxSpd)+minSpd);
 			spdX*=-1;			
 		}
 		
@@ -42,21 +42,24 @@ public class Bola {
 				spdY*=-1;
 			}			
 		}
-		
+
 		//Colisão com os limites laterais da tela
-		if(posX>(tela.getWidth()-radius-0)) {
+		if(posX>(tela.getWidth()-radius)) {
 			tela.pontuaPlayer();
-			this.setPosX((tela.getWidth()/2)-radius);
-			this.setPosY((int)(Math.random()*tela.getHeight()));
+			resetarPosicao(tela);
 			spdX = 2;
 		}
 		
 		if(posX<0) {
 			tela.pontuaComputador();
-			this.setPosX((tela.getWidth()/2)-radius);
-			this.setPosY((int)(Math.random()*(tela.getHeight()-200)+50));
+			resetarPosicao(tela);
 			spdX = -2;
 		}
+	}
+	
+	private void resetarPosicao(Tela tela) {
+		this.setPosX((tela.getWidth()/2)-radius);
+		this.setPosY((int)(Math.random()*tela.getHeight()));
 	}
 	
 	public int getRadius() {

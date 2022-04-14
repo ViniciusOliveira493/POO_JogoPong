@@ -1,18 +1,13 @@
 package view;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import model.Barra;
-import model.Bola;
 import model.Valores;
 
 public class Tela extends JFrame{
@@ -35,27 +30,23 @@ public class Tela extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setBackground(Color.lightGray);
 		this.setResizable(false);
+		setVisible(true);
 		
-		this.valores = valores;
+		this.valores = valores;		
 		
-		lblPause = new JLabel();
-		lblPause.setText("Pause \n(Pressione P para voltar ao jogo)");
-		lblPause.setBounds(getWidth()/2,getHeight()/3,300,300);
-		
-		lblPontosPlayer = new JLabel();
 		panel = new Panel(this.getWidth(),this.getHeight(),this.valores.getBola());
 		this.add(panel);
 		
 		criarBarraPlayer(valores.getPlayer());
 		criarBarraComp(valores.getComp());			
 		
+		criarLblPause();
 		criarLblPontos();
 		iniciarPlayer();
-		ativarKeyListener();
-		setVisible(true);	
+		ativarKeyListener();	
 		pause();
 	}
-	
+
 	public void criarBarraPlayer(Barra barraPlayer) {
 		lblBarraPlayer = new JLabel();
 		lblBarraPlayer.setBounds(barraPlayer.getPosX(),barraPlayer.getPosY(),barraPlayer.getWidth(), barraPlayer.getHeight());
@@ -116,14 +107,12 @@ public class Tela extends JFrame{
 	}
 	
 	private void ativarKeyListener() {
-		this.addKeyListener(new KeyListener() {
-			
+		this.addKeyListener(new KeyListener() {			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
-			}
-			
+			}			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -134,11 +123,11 @@ public class Tela extends JFrame{
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				if(code == 38 || code == 87) {
-					valores.getPlayer().down();								
+					valores.getPlayer().up();								
 				}else if(code == 80) {
 					pause();
 				}else{
-					valores.getPlayer().up();		
+					valores.getPlayer().down();		
 				}
 				
 			}
@@ -164,5 +153,11 @@ public class Tela extends JFrame{
 	
 	private void resetPlayer() {
 		valores.getPlayer().setPosY(this.getHeight()/2-this.valores.getPlayer().getHeight());
+	}
+	
+	private void criarLblPause() {
+		lblPause = new JLabel();
+		lblPause.setText("Pause \n(Pressione P para voltar ao jogo)");
+		lblPause.setBounds(getWidth()/2,getHeight()/3,300,300);		
 	}
 }
