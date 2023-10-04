@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import model.Bola;
 
 public class Panel extends JPanel{
+	private static final long serialVersionUID = 1L;
+	
 	private int screenWidth;
 	private int screenHeight;
 	private Bola bola; 

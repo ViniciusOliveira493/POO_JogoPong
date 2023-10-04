@@ -11,6 +11,8 @@ import model.Barra;
 import model.Valores;
 
 public class Tela extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
 	JLabel lblBarraPlayer;
 	JLabel lblBarraComp;
 	JLabel lblPontosPlayer;

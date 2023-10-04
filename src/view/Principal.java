@@ -19,8 +19,8 @@ public class Principal {
 		ThreadBola tbola = new ThreadBola(valores);
 		tbola.start();
 		
-		ThreadComp compute = new ThreadComp(valores);
-		compute.start();
+		ThreadComp computer = new ThreadComp(valores);
+		computer.start();
 		
 		
 	}
