@@ -9,7 +9,7 @@ public class Bola {
 	private int spdX = 2;
 	private int spdY = 2;
 	
-	private int maxSpd = 8;
+	private int maxSpd = 7;
 	private int minSpd = 2;
 
 	public void mover() {
@@ -18,7 +18,7 @@ public class Bola {
 	}
 	
 	public void colidir(Barra comp,Barra player,Tela tela) {
-		//Colisão com os jogadores (Computador e Player)
+		//Colisï¿½o com os jogadores (Computador e Player)
 		if (posX < comp.getPosX() + comp.getWidth() &&
 			 posX + radius > comp.getPosX() &&
 			 posY < comp.getPosY() + comp.getHeight() &&
@@ -36,14 +36,14 @@ public class Bola {
 			spdX*=-1;
 		}
 		
-		//Colisão com os Limites superior e inferior da Tela
+		//Colisï¿½o com os Limites superior e inferior da Tela
 		if(posY>(tela.getHeight()-radius-50) || posY<0) {
 			if(!(spdY<0 && posY>(tela.getHeight()-radius-50))) {
 				spdY*=-1;
 			}			
 		}
 
-		//Colisão com os limites laterais da tela
+		//Colisï¿½o com os limites laterais da tela
 		if(posX>(tela.getWidth()-radius)) {
 			tela.pontuaPlayer();
 			resetarPosicao(tela);
